@@ -14,16 +14,24 @@ public class Bandas {
     @PersistenceContext
     private EntityManager manager;
 
-    public Banda salvar(Banda banda){
+    public Banda add(Banda banda) {
         manager.persist(banda);
         return banda;
     }
 
-    public List<Banda> todos(){
+    public void updateBanda(Banda banda) {
+        manager.merge(banda);
+    }
+
+    public void deleteBanda(Banda banda) {
+        manager.remove(manager.merge(banda));
+    }
+
+    public List<Banda> todos() {
         return manager.createQuery("SELECT b FROM Banda b", Banda.class).getResultList();
     }
 
-    public List<Banda> buscaPorLocalDeOrigem(String localDeOrigem){
+    public List<Banda> buscaPorLocalDeOrigem(String localDeOrigem) {
         Query query = manager.createQuery("SELECT b FROM Banda b WHERE b.localDeOrigem=:localDeOrigem", Banda.class);
         query.setParameter("localDeOrigem", localDeOrigem);
         return query.getResultList();
