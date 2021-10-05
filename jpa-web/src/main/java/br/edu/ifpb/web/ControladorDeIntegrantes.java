@@ -3,53 +3,37 @@ package br.edu.ifpb.web;
 import br.edu.ifpb.domain.Integrante;
 import br.edu.ifpb.infra.jpa.Integrantes;
 
-import javax.faces.bean.SessionScoped;
+
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.ArrayList;
+
+import java.io.Serializable;
 import java.util.List;
 
 @Named
 @SessionScoped
-public class ControladorDeIntegrantes {
-
+public class ControladorDeIntegrantes implements Serializable{
     @Inject
     private Integrantes integrantes;
-
     private Integrante integrante = new Integrante();
-    private String cpfDeBusca = "";
+    private String resultIntegrante = "";
 
-    public String salvar(){
-        integrantes.salvar(this.integrante);
-        this.integrante = new Integrante();
-        return null;
+    public String getResultIntegrante() {
+        return resultIntegrante;
     }
 
-    public List<Integrante> todosOsIntegrantes(){
-        return this.integrantes.todos();
+    public void setResultIntegrante(String resultIntegrante) {
+        this.resultIntegrante = resultIntegrante;
     }
 
-    public String buscarPorCpf(){
-         this.integrante = integrantes.buscarPorCPF(cpfDeBusca);
-         return null;
+    
+    public Integrantes getPersistencia() {
+        return integrantes;
     }
 
-    public List<Integrante> listagemPorNascimento(){
-        return integrantes.integrantesPorIntervaloEspecifico();
-    }
-
-    public List<Integrante> resultadoDeBusca(){
-        List<Integrante> lista = new ArrayList<>();
-        lista.add(this.integrante);
-        return lista;
-    }
-
-    public String getCpfDeBusca() {
-        return cpfDeBusca;
-    }
-
-    public void setCpfDeBusca(String cpfDeBusca) {
-        this.cpfDeBusca = cpfDeBusca;
+    public void setIntegrante(Integrantes integrantes) {
+        this.integrantes = integrantes;
     }
 
     public Integrante getIntegrante() {
@@ -59,4 +43,44 @@ public class ControladorDeIntegrantes {
     public void setIntegrante(Integrante integrante) {
         this.integrante = integrante;
     }
+    
+    
+    public String add() {
+        if(this.integrante.getId() > 0){
+            this.integrantes.updateIntegrante(this.integrante);
+        } else {
+            this.integrantes.salvar(
+                    this.integrante
+            );
+        }
+        this.integrante = new Integrante();
+        return "/integrante/list?faces-redirect=true";
+    }
+    
+    
+     
+    public String update(Integrante integrante) {
+        this.integrante = integrante;
+        return "/integrante/edit?faces-redirect=true";
+        
+    }
+    
+    
+     
+    public String delete(Integrante integrante) {
+        this.integrantes.deleteIntegrante(integrante);
+        return "/integrante/list";
+    }
+    
+    
+    public List<Integrante> todosOsIntegrantes() {
+        return this.integrantes.todos();
+    }
+    
+    
+   
+    public List<Integrante> listNascimento() {
+        return this.integrantes.integrantesPorIntervaloEspecifico();
+    }
+    
 }
