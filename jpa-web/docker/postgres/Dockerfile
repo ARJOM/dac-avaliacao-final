@@ -1,0 +1,4 @@
+FROM postgres
+ENV POSTGRES_DB avaliacao
+ENV POSTGRES_USER postgres
+ENV POSTGRES_PASSWORD postgres
