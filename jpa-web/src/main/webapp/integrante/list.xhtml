@@ -10,7 +10,7 @@
     <h:form>
 
         <h1 class="header center black-text">Integrantes</h1>
-        <h:dataTable value="#{integranteController.todosOsIntegrantes()}" var="integrante">
+        <h:dataTable value="#{controladorDeIntegrantes.todosOsIntegrantes()}" var="integrante">
 
             <h:column>
                 <f:facet name="header">Id</f:facet>
@@ -34,12 +34,12 @@
 
             <h:column>
                 <h:commandButton class="btn yellow white-text" value="Editar"
-                    action="#{integranteController.update(integrante)}" />
+                    action="#{controladorDeIntegrantes.update(integrante)}" />
             </h:column>
 
             <h:column>
                 <h:commandButton class="btn red white-text" value="Remover"
-                    action="#{integranteController.delete(integrante)}" />
+                    action="#{controladorDeIntegrantes.delete(integrante)}" />
             </h:column>
 
         </h:dataTable>

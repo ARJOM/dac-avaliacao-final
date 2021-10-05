@@ -12,12 +12,12 @@
         <h1 class="header center black-text">Integrante</h1>
 
         <h:outputLabel value="Nome" for="nomeIntegrante" />
-        <h:inputText value="#{integranteController.integrante.nome}" id="nomeIntegrante" />
+        <h:inputText value="#{controladorDeIntegrantes.integrante.nome}" id="nomeIntegrante" />
         <h:outputLabel value="Data de Nascimento" for="dataDeNascimentoIntegrante" />
-        <h:inputText value="#{integranteController.integrante.dataDeNascimento}" id="dataDeNascimentoIntegrante" />
+        <h:inputText value="#{controladorDeIntegrantes.integrante.dataDeNascimento}" id="dataDeNascimentoIntegrante" />
         <h:outputLabel value="CPF" for="cpfIntegrante" />
-        <h:inputText value="#{integranteController.integrante.cpf}" id="cpfIntegrante" />
-        <h:commandButton class="btn black white-text" value="salvar" action="#{integranteController.add()}" />
+        <h:inputText value="#{controladorDeIntegrantes.integrante.cpf}" id="cpfIntegrante" />
+        <h:commandButton class="btn black white-text" value="salvar" action="#{controladorDeIntegrantes.add()}" />
 
 
 

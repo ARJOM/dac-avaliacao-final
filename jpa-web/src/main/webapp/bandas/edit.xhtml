@@ -11,14 +11,14 @@
             <h1 class="header center black-text">Banda</h1>  
             
             <h:outputLabel  value="Nome da banda" for="nomeBanda"/>
-            <h:inputText  value="#{bandaController.banda.nomeFantasia}" id="nomeBanda" />
+            <h:inputText  value="#{controladorDeBandas.banda.nomeFantasia}" id="nomeBanda" />
             
             <h:outputLabel  value="Local de Origem" for="localBanda"/>
             <h:inputText  
-                value="#{bandaController.banda.localDeOrigem}" 
+                value="#{controladorDeBandas.banda.localDeOrigem}"
                 id="localBanda" />
             
-            <h:commandButton class="btn black white-text" value="salvar" action="#{bandaController.adicionar()}" />  
+            <h:commandButton class="btn black white-text" value="salvar" action="#{controladorDeBandas.adicionar()}" />
             
       
         </h:form>

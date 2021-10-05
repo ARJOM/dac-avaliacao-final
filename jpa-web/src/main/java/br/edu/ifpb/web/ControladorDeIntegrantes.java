@@ -4,7 +4,7 @@ import br.edu.ifpb.domain.Integrante;
 import br.edu.ifpb.infra.jpa.Integrantes;
 
 
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -13,9 +13,11 @@ import java.util.List;
 
 @Named
 @SessionScoped
-public class ControladorDeIntegrantes implements Serializable{
+public class ControladorDeIntegrantes {
+
     @Inject
     private Integrantes integrantes;
+
     private Integrante integrante = new Integrante();
     private String resultIntegrante = "";
 
@@ -27,7 +29,7 @@ public class ControladorDeIntegrantes implements Serializable{
         this.resultIntegrante = resultIntegrante;
     }
 
-    
+
     public Integrantes getPersistencia() {
         return integrantes;
     }
@@ -43,8 +45,8 @@ public class ControladorDeIntegrantes implements Serializable{
     public void setIntegrante(Integrante integrante) {
         this.integrante = integrante;
     }
-    
-    
+
+
     public String add() {
         if(this.integrante.getId() > 0){
             this.integrantes.updateIntegrante(this.integrante);
@@ -56,31 +58,31 @@ public class ControladorDeIntegrantes implements Serializable{
         this.integrante = new Integrante();
         return "/integrante/list?faces-redirect=true";
     }
-    
-    
-     
+
+
+
     public String update(Integrante integrante) {
         this.integrante = integrante;
         return "/integrante/edit?faces-redirect=true";
-        
+
     }
-    
-    
-     
+
+
+
     public String delete(Integrante integrante) {
         this.integrantes.deleteIntegrante(integrante);
         return "/integrante/list";
     }
-    
-    
+
+
     public List<Integrante> todosOsIntegrantes() {
         return this.integrantes.todos();
     }
-    
-    
-   
+
+
+
     public List<Integrante> listNascimento() {
         return this.integrantes.integrantesPorIntervaloEspecifico();
     }
-    
+
 }
