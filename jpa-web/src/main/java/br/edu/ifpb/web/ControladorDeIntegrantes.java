@@ -20,6 +20,16 @@ public class ControladorDeIntegrantes {
 
     private Integrante integrante = new Integrante();
     private String resultIntegrante = "";
+    private String cpfDeBusca = "";
+
+    public String buscarPorCpf(){
+        this.integrante = integrantes.buscarPorCPF(cpfDeBusca);
+        return null;
+    }
+
+    public List<Integrante> listagemPorNascimento(){
+        return integrantes.integrantesPorIntervaloEspecifico();
+    }
 
     public String getResultIntegrante() {
         return resultIntegrante;
@@ -85,4 +95,11 @@ public class ControladorDeIntegrantes {
         return this.integrantes.integrantesPorIntervaloEspecifico();
     }
 
+    public String getCpfDeBusca() {
+        return cpfDeBusca;
+    }
+
+    public void setCpfDeBusca(String cpfDeBusca) {
+        this.cpfDeBusca = cpfDeBusca;
+    }
 }

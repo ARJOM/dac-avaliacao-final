@@ -19,6 +19,12 @@ public class ControladorDeBandas implements Serializable{
     private Bandas bandas;
     private Banda banda = new Banda();
     private List<Banda> resultBandas = new ArrayList<>();
+    private String localDeOrigem = "";
+
+    public String buscarPorLocalDeOrigem(){
+        this.resultBandas = bandas.buscaPorLocalDeOrigem(localDeOrigem);
+        return null;
+    }
 
     public List<Banda> getResultBandas() {
         return resultBandas;
@@ -72,6 +78,15 @@ public class ControladorDeBandas implements Serializable{
         this.resultBandas = this.bandas.buscaPorLocalDeOrigem(this.banda.getLocalDeOrigem());
         this.banda = new Banda();
         return "/banda/search?faces-redirect=true";
+    }
+
+
+    public String getLocalDeOrigem() {
+        return localDeOrigem;
+    }
+
+    public void setLocalDeOrigem(String localDeOrigem) {
+        this.localDeOrigem = localDeOrigem;
     }
         
     
